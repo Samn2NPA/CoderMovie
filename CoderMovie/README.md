@@ -39,10 +39,11 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 Portrait:
-http://i.imgur.com/Ghb2O6J.gif
+<img src='http://i.imgur.com/Ghb2O6J.gif' title='Portrait' width='' alt='Video Walkthrough Portrait' />
 
 Landscape:
-http://i.imgur.com/Mhnz35q.gif
+<img src='http://i.imgur.com/Mhnz35q.gif' title='Landscape' width='' alt='Video Walkthrough Landscape' />
+
 
 ## Notes
 
