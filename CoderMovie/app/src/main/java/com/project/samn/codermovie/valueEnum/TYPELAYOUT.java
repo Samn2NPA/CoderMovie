@@ -1,4 +1,4 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.valueEnum;
 
 /**
  * Created by Samn on 19-Jun-17.

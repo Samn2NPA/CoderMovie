@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">CoderMovie</string>
-
+    <string name="app_name">Movie Attack</string>
+    <string name="app_copyright"> Samn Nguyen </string>
 </resources>

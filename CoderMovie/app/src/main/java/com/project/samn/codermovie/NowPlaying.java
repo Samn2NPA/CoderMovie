@@ -1,6 +1,7 @@
 package com.project.samn.codermovie;
 
 import com.google.gson.annotations.SerializedName;
+import com.project.samn.codermovie.model.Movie;
 
 import java.util.List;
 

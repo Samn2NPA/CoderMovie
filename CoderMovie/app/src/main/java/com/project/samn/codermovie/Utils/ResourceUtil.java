@@ -1,4 +1,4 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.Utils;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,6 +7,11 @@ import android.widget.ImageView;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.project.samn.codermovie.BuildConfig;
+import com.project.samn.codermovie.MovieApi;
+import com.project.samn.codermovie.model.MovieTrailer;
+import com.project.samn.codermovie.R;
+import com.project.samn.codermovie.Trailers;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -30,6 +35,8 @@ public class ResourceUtil {
 
     private static List<MovieTrailer> trailers;
     private static String src_tmp;
+
+    public static boolean isFullScreen = true;
 
     public static void loadImage(Context context, String TAG ,ImageView imageView, String path){
         //load image by Picasso
@@ -57,6 +64,9 @@ public class ResourceUtil {
 
     }
 
+    /*
+    * hàm này dùng để get Source trailer của movie bằng movie_id
+    * đồng thời start luôn youtubePlayerFragment */
     public static void getTrailerMovie(final long movie_id, final YouTubePlayerFragment youTubeFragment){
         Retrofit retrofit = RetrofitUtil.create(movie_id);
         final MovieApi movieApi = retrofit.create(MovieApi.class);
@@ -69,20 +79,15 @@ public class ResourceUtil {
 
                     //get source of video to show into YOUTUBE PLAYER
                     for(int i = 0; i< trailers.size(); i++){
-                        Log.d(" TRAILER LIST", trailers.get(i).getName() + " || " + trailers.get(i).getSource());
                         if(trailers.get(i).getType().equalsIgnoreCase("Trailer"))
                             src_tmp = trailers.get(i).getSource();
                     }
 
-                    Log.w(TAG + "num:::", "1.7. SOURCE_TRAILER = "+ src_tmp);
-
                     youTubePlayerFragmentInitialize(youTubeFragment, src_tmp);
-
                 }
                 else {
                     Log.d(TAG + "::: response = ", "null");
                 }
-
             }
 
             @Override
@@ -92,7 +97,6 @@ public class ResourceUtil {
         });
     }
 
-
     private static void youTubePlayerFragmentInitialize(YouTubePlayerFragment youtubeFragment, final String source){
         youtubeFragment.initialize(BuildConfig.API_KEY,
                 new YouTubePlayer.OnInitializedListener() {
@@ -101,6 +105,7 @@ public class ResourceUtil {
                                                         YouTubePlayer youTubePlayer, boolean b) {
                         // do any work here to cue video, play video, etc.
                         youTubePlayer.cueVideo(source);
+                        youTubePlayer.setFullscreen(isFullScreen); //set fullscreen tùy activity
                     }
                     @Override
                     public void onInitializationFailure(YouTubePlayer.Provider provider,

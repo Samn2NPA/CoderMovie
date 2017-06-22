@@ -1,10 +1,12 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.project.samn.codermovie.R;
+import com.project.samn.codermovie.Utils.ResourceUtil;
+import com.project.samn.codermovie.model.Movie;
 
 public class YouTubePlayerActivity extends YouTubeBaseActivity {
 
@@ -18,12 +20,15 @@ public class YouTubePlayerActivity extends YouTubeBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_you_tube_player);
+
         youtubeFragment = (YouTubePlayerFragment)
                 getFragmentManager().findFragmentById(R.id.youtubeFragment);
 
         final long movieID = getIntent().getLongExtra(ResourceUtil.MOVIE_ID, 0);
-        Log.d(TAG, "MOVIE PARSE ID: " + movieID);
 
+        ResourceUtil.isFullScreen = true; //youtube_player_activity thì CÓ fullscreen youtubeFragment
+
+        //lấy source trailer của movie qua movieID và load lên youtubeFragment
         ResourceUtil.getTrailerMovie(movieID, youtubeFragment);
     }
 }

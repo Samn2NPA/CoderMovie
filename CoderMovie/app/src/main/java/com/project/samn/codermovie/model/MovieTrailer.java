@@ -1,4 +1,4 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.model;
 
 import com.google.gson.annotations.SerializedName;
 

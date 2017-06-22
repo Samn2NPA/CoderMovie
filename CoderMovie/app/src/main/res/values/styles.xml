@@ -13,5 +13,18 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="textApp">
+        <item name="android:textStyle"> bold </item>
+        <item name="android:textColor"> @color/colorAccent </item>
+        <item name="android:textSize"> @dimen/sizeAppName</item>
+        <item name="android:typeface"> monospace </item>
+    </style>
+
+    <style name="textCopyright">
+        <item name="android:textStyle"> bold </item>
+        <item name="android:textColor"> @color/primary_light </item>
+        <item name="android:textSize"> @dimen/sizeCopyright</item>
+        <item name="android:typeface"> monospace </item>
+    </style>
 
 </resources>

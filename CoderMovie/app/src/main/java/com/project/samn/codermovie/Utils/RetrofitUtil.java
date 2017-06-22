@@ -1,4 +1,7 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.Utils;
+
+import com.project.samn.codermovie.BuildConfig;
+import com.project.samn.codermovie.Logging.LoggingInterceptor;
 
 import java.io.IOException;
 
@@ -10,8 +13,6 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.project.samn.codermovie.ResourceUtil.BASE_URL;
-
 /**
  * Created by Samn on 15-Jun-17.
  */
@@ -22,7 +23,7 @@ public class RetrofitUtil {
        return new Retrofit.Builder()
                .addConverterFactory(GsonConverterFactory.create())
                .client(client())
-                .baseUrl(BASE_URL)
+                .baseUrl(ResourceUtil.BASE_URL)
                 .build();
     }
 
@@ -53,7 +54,7 @@ public class RetrofitUtil {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client())
-                .baseUrl(BASE_URL + movie_id +"/")
+                .baseUrl(ResourceUtil.BASE_URL + movie_id +"/")
                 .build();
     }
 

@@ -1,4 +1,4 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.project.samn.codermovie.Adapter.MovieAdapter;
+import com.project.samn.codermovie.MovieApi;
+import com.project.samn.codermovie.NowPlaying;
+import com.project.samn.codermovie.R;
+import com.project.samn.codermovie.Utils.ResourceUtil;
+import com.project.samn.codermovie.Utils.RetrofitUtil;
+import com.project.samn.codermovie.model.Movie;
+import com.project.samn.codermovie.valueEnum.TYPELAYOUT;
 
 import java.util.List;
 
@@ -36,45 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        //get Now playing movie
         getNowPlayingMovie();
 
-        /* SwipeRefreshLayout */
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getNowPlayingMovie();
-                swipeContainer.setRefreshing(false);
-            }
-        });
+        //xử lý Swipe to refresh
+        setupSwipeContainer();
 
-        // Configure the refreshing colors
-        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
-        lvMovie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Movie mm = movies.get(position);
-                long movie_id = mm.getId();
-
-                //set Source trailer to movie detail
-                if(mm.getTypelayout() == TYPELAYOUT.POPULAR){
-                    YouTubePlayerActivity.moviePlayer = mm;
-                    Intent intent = new Intent(MainActivity.this, YouTubePlayerActivity.class);
-                    intent.putExtra(ResourceUtil.MOVIE_ID, movie_id);
-                    startActivity(intent);
-                }
-                else {
-                    DetailMovieActivity.movieDetail = mm;
-
-                    Intent intent = new Intent(MainActivity.this, DetailMovieActivity.class);
-                    intent.putExtra(ResourceUtil.MOVIE_ID, movie_id);
-                    startActivity(intent);
-                }
-            }
-        });
+        //xử lý click vào item của Listview
+        ClickOnItem_ListView();
 
     }
 
@@ -97,6 +75,45 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void setupSwipeContainer(){
+         /* SwipeRefreshLayout */
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getNowPlayingMovie();
+                swipeContainer.setRefreshing(false);
+            }
+        });
 
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+    }
 
+    private void ClickOnItem_ListView(){
+        lvMovie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Movie mm = movies.get(position);
+                long movie_id = mm.getId();
+
+                //set Source trailer to movie detail
+                if(mm.getTypelayout() == TYPELAYOUT.POPULAR){
+                    YouTubePlayerActivity.moviePlayer = mm;
+                    Intent intent = new Intent(MainActivity.this, YouTubePlayerActivity.class);
+                    intent.putExtra(ResourceUtil.MOVIE_ID, movie_id);
+                    startActivity(intent);
+                }
+                else {
+                    DetailMovieActivity.movieDetail = mm;
+
+                    Intent intent = new Intent(MainActivity.this, DetailMovieActivity.class);
+                    intent.putExtra(ResourceUtil.MOVIE_ID, movie_id);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
 }

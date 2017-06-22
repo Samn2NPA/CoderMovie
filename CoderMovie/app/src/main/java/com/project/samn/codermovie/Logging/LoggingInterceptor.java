@@ -1,4 +1,4 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.Logging;
 
 import android.util.Log;
 

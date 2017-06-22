@@ -1,6 +1,7 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.project.samn.codermovie.valueEnum.TYPELAYOUT;
 
 /**
  * Created by Samn on 15-Jun-17.

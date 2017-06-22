@@ -1,4 +1,4 @@
-package com.project.samn.codermovie;
+package com.project.samn.codermovie.Adapter;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -12,6 +12,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.project.samn.codermovie.model.Movie;
+import com.project.samn.codermovie.R;
+import com.project.samn.codermovie.Utils.ResourceUtil;
+import com.project.samn.codermovie.valueEnum.TYPELAYOUT;
 
 import java.util.List;
 
