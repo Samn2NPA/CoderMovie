@@ -39,16 +39,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<<<<<<< HEAD
 <img src='http://imgur.com/kB0cEKo' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-=======
-Portrait:
-<img src='http://i.imgur.com/Ghb2O6J.gif' title='Portrait' width='' alt='Video Walkthrough Portrait' />
-
-Landscape:
-<img src='http://i.imgur.com/Mhnz35q.gif' title='Landscape' width='' alt='Video Walkthrough Landscape' />
->>>>>>> origin/master
-
 
 ## Notes
 
